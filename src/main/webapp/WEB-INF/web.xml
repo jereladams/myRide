@@ -1,0 +1,82 @@
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+  <display-name>myProject</display-name>
+
+  <!-- Tell the server to use form-based authentication. -->
+  <login-config>
+    <auth-method>FORM</auth-method>
+    <form-login-config>
+      <form-login-page>/login.jsp</form-login-page>
+      <form-error-page>/loginerror.jsp</form-error-page>
+    </form-login-config>
+  </login-config>
+
+  <!-- Protect admin pages  -->
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>Admin</web-resource-name>
+      <url-pattern>/users/action=list</url-pattern>
+    </web-resource-collection>
+
+    <auth-constraint>
+      <role-name>Admin</role-name>
+    </auth-constraint>
+  </security-constraint>
+
+  <!-- Protect the registered user car pages. -->
+  <security-constraint>
+      <web-resource-collection>
+          <web-resource-name>User</web-resource-name>
+          <url-pattern>/cars/*</url-pattern>
+      </web-resource-collection>
+
+      <auth-constraint>
+          <role-name>Admin</role-name>
+          <role-name>User</role-name>
+      </auth-constraint>
+  </security-constraint>
+
+  <!-- Protect the registered user repair pages. -->
+  <security-constraint>
+      <web-resource-collection>
+          <web-resource-name>User</web-resource-name>
+          <url-pattern>/repairs/*</url-pattern>
+      </web-resource-collection>
+
+      <auth-constraint>
+          <role-name>Admin</role-name>
+          <role-name>User</role-name>
+      </auth-constraint>
+  </security-constraint>
+
+  <!-- Protect the registered user part pages. -->
+  <security-constraint>
+      <web-resource-collection>
+          <web-resource-name>User</web-resource-name>
+          <url-pattern>/parts/*</url-pattern>
+      </web-resource-collection>
+
+      <auth-constraint>
+          <role-name>Admin</role-name>
+          <role-name>User</role-name>
+      </auth-constraint>
+  </security-constraint>
+
+  <!-- Define security roles. -->
+  <security-role>
+    <role-name>Admin</role-name>
+  </security-role>
+
+  <security-role>
+    <role-name>User</role-name>
+  </security-role>
+
+  <error-page>
+     <location>/error.jsp</location>
+  </error-page>
+
+</web-app>
+
+
