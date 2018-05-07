@@ -1,6 +1,5 @@
 package com.myRide.controller;
 
-import com.myRide.entity.Car;
 import com.myRide.entity.Part;
 import com.myRide.entity.Repair;
 import com.myRide.persistence.GenericDao;
@@ -11,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.Timestamp;
 import java.util.List;
 
 @WebServlet(name = "Parts", urlPatterns = {"/parts"})
@@ -32,7 +30,7 @@ public class Parts extends HttpServlet {
      * @throws ServletException if there is a Servlet failure
      * @throws IOException      if there is an IO failure
      */
-
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -72,11 +70,20 @@ public class Parts extends HttpServlet {
      * @throws ServletException if there is a Servlet failure
      * @throws IOException      if there is an IO failure
      */
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         doGet(request, response);
     }
 
+    /**
+     * List parts
+     *
+     * @param request  the HttpServletRequest object
+     * @param response the HttpServletResponse object
+     * @throws ServletException if there is a Servlet failure
+     * @throws IOException      if there is an IO failure
+     */
     private void listPart(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
 
@@ -93,12 +100,28 @@ public class Parts extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
+    /**
+     * Show add part form
+     *
+     * @param request  the HttpServletRequest object
+     * @param response the HttpServletResponse object
+     * @throws ServletException if there is a Servlet failure
+     * @throws IOException      if there is an IO failure
+     */
     private void showNewForm(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("partform.jsp");
         dispatcher.forward(request, response);
     }
 
+    /**
+     * Show edit part form
+     *
+     * @param request  the HttpServletRequest object
+     * @param response the HttpServletResponse object
+     * @throws ServletException if there is a Servlet failure
+     * @throws IOException      if there is an IO failure
+     */
     private void showEditForm(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int partID = Integer.parseInt(request.getParameter("partID"));
@@ -108,6 +131,13 @@ public class Parts extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
+    /**
+     * Insert new part
+     *
+     * @param request  the HttpServletRequest object
+     * @param response the HttpServletResponse object
+     * @throws IOException      if there is an IO failure
+     */
     private void insertPart(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
 
@@ -119,7 +149,6 @@ public class Parts extends HttpServlet {
         String supplier = request.getParameter("supplier");
         Double price = Double.parseDouble(request.getParameter("servicePerformed"));
         String description = request.getParameter("description");
-        Timestamp timestamp =  Timestamp.valueOf("2018-01-01 12:00:00");
 
         GenericDao<Repair>  repairDao = new GenericDao(Repair.class);
         Repair repair = repairDao.getById(repairID);
@@ -132,6 +161,13 @@ public class Parts extends HttpServlet {
         response.sendRedirect("parts");
     }
 
+    /**
+     * Update part
+     *
+     * @param request  the HttpServletRequest object
+     * @param response the HttpServletResponse object
+     * @throws IOException      if there is an IO failure
+     */
     private void updatePart(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
 
@@ -145,7 +181,6 @@ public class Parts extends HttpServlet {
         Double price = Double.parseDouble(request.getParameter("servicePerformed"));
         String description = request.getParameter("description");
 
-
         GenericDao<Repair> repairDAO = new GenericDao(Repair.class);
         Repair repair = repairDAO.getById(repairID);
 
@@ -156,6 +191,13 @@ public class Parts extends HttpServlet {
         response.sendRedirect("parts");
     }
 
+    /**
+     * Delete part
+     *
+     * @param request  the HttpServletRequest object
+     * @param response the HttpServletResponse object
+     * @throws IOException      if there is an IO failure
+     */
     private void deletePart(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
 

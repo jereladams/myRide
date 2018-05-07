@@ -13,7 +13,7 @@
 
 <div class="container">
 
-    <h4><b>Car:</b></h4>
+    <h4><b>Car</b></h4>
 
 <table class="table table-striped">
     <tr>
@@ -36,7 +36,7 @@
 </table>
 
 
-    <h4><b>Repairs:</b></h4>
+    <h4><b>Repairs</b></h4>
 
     <table class="table table-striped">
         <tr>
@@ -65,7 +65,7 @@
 
                 <a href="repairs?carid=${carid}&repairid=${repair.id}&action=delete">Delete</a>
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <a href="repairs?carid=${carid}&repairid=${repair.id}&action=edit">Edit</a>
+                <a href="repairs?carid=${carid}&repairid=${repair.id}&action=newedit">Edit</a>
 
                 <%--&nbsp;&nbsp;&nbsp;&nbsp;--%>
                 <%--<a href="parts?carid=${carid}&repairid=${repair.id}&action=list">Parts</a>--%>

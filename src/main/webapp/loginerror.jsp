@@ -10,7 +10,7 @@
 
 <div class="container">
 
-    <h4><b>Login Message:</b></h4>
+    <h4><b>Login Message</b></h4>
 
     <form class="rendered-form" action="login.jsp">
         Login failed. Please try again.

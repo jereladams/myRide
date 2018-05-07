@@ -40,7 +40,7 @@
                 <li><a href="cars?action=list">VIEW GARAGE</a></li>
 
                 <c:if test="${pageContext.request.isUserInRole('Admin')}">
-                    <li><a href="users?action=list">VIEW USERS</a></li>
+                    <li><a href="admins?action=list">VIEW USERS</a></li>
                 </c:if>
 
                 </li>

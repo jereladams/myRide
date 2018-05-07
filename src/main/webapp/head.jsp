@@ -1,6 +1,6 @@
 <head>
     <meta charset="UTF-8">
-    <title>Garage Template - Contact Page</title>
+    <title>myRide</title>
     <meta name="description" content="">
     <meta name="author" content="Web Domus Italia">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">

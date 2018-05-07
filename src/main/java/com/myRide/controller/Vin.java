@@ -11,10 +11,8 @@ import com.webServices.recalls.RecallResults;
 import com.webServices.vin.VinItem;
 import com.webServices.vin.VinResults;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,11 +26,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Vin.
+ */
 @WebServlet(name = "Vin", urlPatterns = {"/vin"})
 
 public class Vin extends HttpServlet {
-
-    private final Logger logger = LogManager.getLogger(this.getClass());
 
     /**
      * Handles HTTP GET requests.
@@ -42,22 +41,25 @@ public class Vin extends HttpServlet {
      * @throws ServletException if there is a Servlet failure
      * @throws IOException      if there is an IO failure
      */
-
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        ArrayList<String> errorMessages = new ArrayList();
-
+        //Get values from request
         String vin = request.getParameter("vin");
         String carid = request.getParameter("carid");
 
-        errorMessages = validateInput(request);
+        //Validate input
+        ArrayList<String> errorMessages = new ArrayList();
+        errorMessages = validateInput(vin);
 
         if (errorMessages.size() == 0) {
 
+            //Decode VIN
             VinResults vinResults = getVinResults(vin);
 
             if (vinResults.getCount() > 0) {
+
                 VinItem vinItem = vinResults.getResults().get(0);
 
                 //Get year,make,model,trim from webservice
@@ -66,6 +68,7 @@ public class Vin extends HttpServlet {
                 String model = vinItem.getModel();
                 String trim = vinItem.getTrim();
 
+                //Car found
                 if (year != "" || make != "" || model != "") {
                     request.setAttribute("vin", vin);
                     request.setAttribute("year", year);
@@ -84,8 +87,8 @@ public class Vin extends HttpServlet {
                     RequestDispatcher dispatcher = request.getRequestDispatcher("results.jsp");
                     dispatcher.forward(request, response);
                 }else{
-                    errorMessages.add("No results.");
                     //Add error messages to request
+                    errorMessages.add("No results.");
                     request.setAttribute("errorMessages", errorMessages);
 
                     //Return to index page
@@ -93,8 +96,8 @@ public class Vin extends HttpServlet {
                     dispatcher.forward(request, response);
                 }
             }else{
-                errorMessages.add("No results.");
                 //Add error messages to request
+                errorMessages.add("No results.");
                 request.setAttribute("errorMessages", errorMessages);
 
                 //Return to index page
@@ -124,12 +127,19 @@ public class Vin extends HttpServlet {
         doGet(request, response);
     }
 
+    /**
+     * Decodes the VIN
+     *
+     * @param vin  the Vehicle ID Number
+     *
+     * @return the Vin WebService Results
+     */
     private VinResults getVinResults(String vin) {
         Client client = ClientBuilder.newClient();
 
-        String url = "https://vpic.nhtsa.dot.gov/api/vehicles/decodevinvalues/" + vin + "?format=json";
-
-        System.out.println(url);
+        //Get url from web.xml
+        ServletContext context = getServletContext();
+        String url = context.getInitParameter("vinurl") + vin + context.getInitParameter("format");
 
         WebTarget target = client.target(url);
 
@@ -140,14 +150,8 @@ public class Vin extends HttpServlet {
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
         try {
-
             // Convert JSON to Object
             VinResults vinResults = mapper.readValue(response, VinResults.class);
-
-            System.out.println(vinResults.toString());
-
-            System.out.println(vinResults.getResults().toString());
-
             return vinResults;
 
         } catch (JsonGenerationException e) {
@@ -162,13 +166,22 @@ public class Vin extends HttpServlet {
         }
     }
 
+    /**
+     * Search recalls
+     *
+     * @param year  the vehicle year
+     * @param make  the vehicle make
+     * @param model  the vehicle model
+     *
+     * @return the Recall WebService Results
+     */
      private RecallResults getRecallResults(String year, String make, String model) {
         Client client = ClientBuilder.newClient();
 
-        String url = "https://one.nhtsa.gov/webapi/api/Recalls/vehicle/modelyear/" + year +
-                        "/make/" + make + "/model/" + model + "?format=json";
-
-        System.out.println(url);
+       //Get url from web.xml
+       ServletContext context = getServletContext();
+       String url = context.getInitParameter("recallurl") + year +
+               "/make/" + make + "/model/" + model + context.getInitParameter("format");
 
         WebTarget target = client.target(url);
 
@@ -182,10 +195,6 @@ public class Vin extends HttpServlet {
 
             // Convert JSON to Object
             RecallResults recallResults = mapper.readValue(response, RecallResults.class);
-
-            System.out.println(recallResults.toString());
-
-            System.out.println(recallResults.getResults().toString());
 
             return recallResults;
 
@@ -201,10 +210,16 @@ public class Vin extends HttpServlet {
         }
     }
 
-    private ArrayList<String> validateInput(HttpServletRequest request) {
+    /**
+     * Validate input
+     *
+     * @param vin the vehicle id number
+     *
+     * @return array of error messages
+     */
+    private ArrayList<String> validateInput(String vin) {
 
         ArrayList<String> errorMessages = new ArrayList();
-        String vin = request.getParameter("vin");
 
         //Make sure value was entered.
         if ((vin == null) || (vin.length() != 17)) {

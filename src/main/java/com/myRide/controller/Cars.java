@@ -1,7 +1,6 @@
 package com.myRide.controller;
 
 import com.myRide.entity.Car;
-import com.myRide.entity.Role;
 import com.myRide.entity.User;
 import com.myRide.persistence.GenericDao;
 import com.myRide.utilities.SessionUser;
@@ -33,6 +32,7 @@ public class Cars extends HttpServlet {
      * @throws ServletException if there is a Servlet failure
      * @throws IOException      if there is an IO failure
      */
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -62,7 +62,6 @@ public class Cars extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
             dispatcher.forward(request, response);
         }
-
     }
 
     /**
@@ -73,11 +72,20 @@ public class Cars extends HttpServlet {
      * @throws ServletException if there is a Servlet failure
      * @throws IOException      if there is an IO failure
      */
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         doGet(request, response);
     }
 
+    /**
+     * List cars
+     *
+     * @param request  the HttpServletRequest object
+     * @param response the HttpServletResponse object
+     * @throws ServletException if there is a Servlet failure
+     * @throws IOException      if there is an IO failure
+     */
     private void listCar(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
 
@@ -100,6 +108,13 @@ public class Cars extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
+    /**
+     * Insert new car
+     *
+     * @param request  the HttpServletRequest object
+     * @param response the HttpServletResponse object
+      * @throws IOException      if there is an IO failure
+     */
     private void insertCar(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
 
@@ -121,6 +136,13 @@ public class Cars extends HttpServlet {
         response.sendRedirect("cars?action=list");
     }
 
+    /**
+     * Delete car
+     *
+     * @param request  the HttpServletRequest object
+     * @param response the HttpServletResponse object
+     * @throws IOException      if there is an IO failure
+     */
     private void deleteCar(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
 

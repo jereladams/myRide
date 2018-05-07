@@ -3,7 +3,7 @@
         &copy; Copyright 2018
     </div>
     <div class="atisda">
-        myGarage
+        myRide
     </div>
 </div>
 

@@ -9,7 +9,7 @@
 
 <div class="container">
 
-    <h4><b>User List:</b></h4>
+    <h4><b>User List</b></h4>
 
         <table class="table table-striped">
             <tr>
@@ -25,7 +25,7 @@
                       <td>${user.email}</td>
                       <td>${user.createTime}</td>
                       <td>
-                          <a href="users?userid=${user.id}&action=delete">
+                          <a href="admins?userid=${user.id}&action=delete">
                              Delete
                           </a>
                       </td>

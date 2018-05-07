@@ -10,14 +10,15 @@ While maintaining your own vehicle helps save money, it also creates a disconnec
 
 I would like to create an Automobile Maintenance Archive website to serve as repository for those looking to track repairs, parts, warranties and recall history for their vehicles.
 
+### Screenshots
 
-Save below for template.....
-
-Screenshots from myRide website:
-
-![Example Description](images/Example.png)
-
-![Example Report](images/Example.png)
+* [Main](Images/MainScreen.jpg)
+* [Login](Images/LoginScreen.jpg)
+* [Register](Images/RegisterScreen.jpg)
+* [Cars](Images/CarsScreen.jpg)
+* [Add Repair](Images/AddRepairScreen.jpg)
+* [Repairs](Images/RepairsScreen.jpg)
+* [Recalls](Images/RecallsScreen.jpg)
 
 
 ### Project Technologies/Techniques

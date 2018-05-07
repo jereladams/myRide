@@ -38,3 +38,6 @@
 | 5/1/18 | Figured out how to add logged in user to session. | 2 |   |
 | 5/2/18 | Added user object to session & worked on CRUD & tests. | 8  |   |
 | 5/3/18 | Security and validation | 8  |   |
+| 5/5/18 | Testing,bug fixes,added new git repo, updated git docs, deployed to AWS| 10 |   |
+| 5/6/18 | Cleanup code and jdocs | 9  |   |
+| 5/7/18 | Moved webservice values to xml, added Admin controller for security | 4  |   |

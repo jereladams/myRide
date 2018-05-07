@@ -2,7 +2,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
-  <display-name>myProject</display-name>
+  <display-name>myRide</display-name>
 
   <!-- Tell the server to use form-based authentication. -->
   <login-config>
@@ -16,8 +16,8 @@
   <!-- Protect admin pages  -->
   <security-constraint>
     <web-resource-collection>
-      <web-resource-name>Admin</web-resource-name>
-      <url-pattern>/users/action=list</url-pattern>
+      <web-resource-name>Admins</web-resource-name>
+      <url-pattern>/admins/*</url-pattern>
     </web-resource-collection>
 
     <auth-constraint>
@@ -76,6 +76,21 @@
   <error-page>
      <location>/error.jsp</location>
   </error-page>
+
+  <context-param>
+     <param-name>vinurl</param-name>
+     <param-value>https://vpic.nhtsa.dot.gov/api/vehicles/decodevinvalues/</param-value>
+  </context-param>
+
+  <context-param>
+     <param-name>recallurl</param-name>
+     <param-value>https://one.nhtsa.gov/webapi/api/Recalls/vehicle/modelyear/</param-value>
+  </context-param>
+
+  <context-param>
+      <param-name>format</param-name>
+      <param-value>?format=json</param-value>
+  </context-param>
 
 </web-app>
 

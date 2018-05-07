@@ -10,7 +10,7 @@
 
 <div class="container">
 
-    <h4><b>Cars:</b></h4>
+    <h4><b>Cars</b></h4>
 
     <table class="table table-striped">
         <tr>

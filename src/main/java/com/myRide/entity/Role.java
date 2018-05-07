@@ -4,6 +4,9 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.util.Objects;
 
+/**
+ * The type Role.
+ */
 @Entity(name = "Role")
 @Table(name = "roles")
 public class Role {
@@ -22,35 +25,75 @@ public class Role {
     @Column(name="role_name")
     private String roleName;
 
+    /**
+     * Instantiates a new Role.
+     */
     public Role() {
     }
 
+    /**
+     * Instantiates a new Role.
+     *
+     * @param user     the user
+     * @param roleName the role name
+     * @param email    the email
+     */
     public Role(User user, String roleName, String email) {
         this.user = user;
         this.roleName = roleName;
         this.email = email;
     }
 
+    /**
+     * Gets id.
+     *
+     * @return the id
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * Sets id.
+     *
+     * @param id the id
+     */
     public void setId(int id) {
         this.id = id;
     }
 
+    /**
+     * Gets user.
+     *
+     * @return the user
+     */
     public User getUser() {
         return user;
     }
 
+    /**
+     * Sets user.
+     *
+     * @param user the user
+     */
     public void setUser(User user) {
         this.user = user;
     }
 
+    /**
+     * Gets role name.
+     *
+     * @return the role name
+     */
     public String getRoleName() {
         return roleName;
     }
 
+    /**
+     * Sets role name.
+     *
+     * @param roleName the role name
+     */
     public void setRoleName(String roleName) {
         this.roleName = roleName;
     }
@@ -76,7 +119,6 @@ public class Role {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(id,  roleName, email);
     }
 }

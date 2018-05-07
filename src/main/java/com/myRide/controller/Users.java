@@ -14,8 +14,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
+/**
+ * The type Users.
+ */
 @WebServlet(name = "Users", urlPatterns = {"/users"})
 
 public class Users extends HttpServlet {
@@ -34,7 +36,7 @@ public class Users extends HttpServlet {
      * @throws ServletException if there is a Servlet failure
      * @throws IOException      if there is an IO failure
      */
-
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
 
@@ -53,20 +55,14 @@ public class Users extends HttpServlet {
             case "insert":
                 insertUser(request, response);
                 break;
-            case "delete":
-                deleteUser(request, response);
-                break;
-            case "edit":
+             case "edit":
                 showEditForm(request, response);
                 break;
             case "update":
                 updateUser(request, response);
                 break;
-            case "logout":
-                logoutUser(request, response);
-                break;
             default:
-                listUser(request, response);
+                logoutUser(request, response);
                 break;
         }
     }
@@ -84,27 +80,42 @@ public class Users extends HttpServlet {
         doGet(request, response);
     }
 
-    private void listUser(HttpServletRequest request, HttpServletResponse response)
-        throws IOException, ServletException {
-
-        List<User> users = userDAO.getAll();
-        request.setAttribute("users", users);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("users.jsp");
-        dispatcher.forward(request, response);
-    }
-
+    /**
+     * Show new user form
+     *
+     * @param request  the HttpServletRequest object
+     * @param response the HttpServletResponse object
+     * @throws ServletException if there is a Servlet failure
+     * @throws IOException      if there is an IO failure
+     */
     private void showNewForm(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("userform.jsp");
         dispatcher.forward(request, response);
     }
 
+    /**
+     * Show edit user form
+     *
+     * @param request  the HttpServletRequest object
+     * @param response the HttpServletResponse object
+     * @throws ServletException if there is a Servlet failure
+     * @throws IOException      if there is an IO failure
+     */
     private void showEditForm(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("userform.jsp");
         dispatcher.forward(request, response);
     }
 
+    /**
+     * Insert user
+     *
+     * @param request  the HttpServletRequest object
+     * @param response the HttpServletResponse object
+     * @throws ServletException if there is a Servlet failure
+     * @throws IOException      if there is an IO failure
+     */
     private void insertUser(HttpServletRequest request, HttpServletResponse response)
         throws ServletException,IOException {
 
@@ -138,6 +149,14 @@ public class Users extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
+    /**
+     * Update user
+     *
+     * @param request  the HttpServletRequest object
+     * @param response the HttpServletResponse object
+     * @throws ServletException if there is a Servlet failure
+     * @throws IOException      if there is an IO failure
+     */
     private void updateUser(HttpServletRequest request, HttpServletResponse response)
         throws ServletException,IOException {
 
@@ -161,19 +180,14 @@ public class Users extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-    private void deleteUser(HttpServletRequest request, HttpServletResponse response)
-        throws IOException {
-
-        //Get values from request
-        int userId = Integer.parseInt(request.getParameter("userid"));
-
-        //Delete user
-        userDAO.delete(userDAO.getById(userId));
-
-        //Back to user list page
-        response.sendRedirect("users?action=list");
-    }
-
+    /**
+     * Logout user
+     *
+     * @param request  the HttpServletRequest object
+     * @param response the HttpServletResponse object
+     * @throws ServletException if there is a Servlet failure
+     * @throws IOException      if there is an IO failure
+     */
     private void logoutUser(HttpServletRequest request, HttpServletResponse response)
             throws ServletException,IOException {
 
@@ -189,6 +203,14 @@ public class Users extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
+    /**
+     * Validate input
+     *
+     * @param email  the user email
+     * @param password  the user password
+     *
+     * @return array of error messages
+     */
     private ArrayList<String> validateInput(String email, String password) {
 
         ArrayList<String> errorMessages = new ArrayList();
