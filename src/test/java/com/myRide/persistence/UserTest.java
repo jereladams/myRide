@@ -1,6 +1,6 @@
 package com.myRide.persistence;
 
-import com.myRide.entity.User;
+import com.myRide.entity.*;
 import com.myRide.testUtils.Database;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -75,12 +75,32 @@ public class UserTest {
     /**
      * Verify successful delete of user
      *
-     * Note: added some extra tests for practice
      */
     @Test
     void deleteSuccess() {
-        userDao.delete(userDao.getById(3));
-        assertNull(userDao.getById(3));
+        //Delete user
+        userDao.delete(userDao.getById(2));
+        assertNull(userDao.getById(2));
+
+        //Delete role
+        GenericDao<Role> roleDao = new GenericDao(Role.class);
+        Role role = roleDao.getById(2);
+        assertNull(roleDao.getById(2));
+
+        //Delete car
+        GenericDao<Car> carDao = new GenericDao(Car.class);
+        Role car = carDao.getById(2);
+        assertNull(carDao.getById(2));
+
+        //Delete repairs
+        GenericDao<Repair> repairDao = new GenericDao(Repair.class);
+        Repair repair = repairDao.getById(2);
+        assertNull(carDao.getById(2));
+
+        //Delete part
+        GenericDao<Part> partDao = new GenericDao(Part.class);
+        Role part = partDao.getById(2);
+        assertNull(partDao.getById(2));
     }
 
     /**

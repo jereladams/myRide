@@ -41,3 +41,4 @@
 | 5/5/18 | Testing,bug fixes,added new git repo, updated git docs, deployed to AWS| 10 |   |
 | 5/6/18 | Cleanup code and jdocs | 9  |   |
 | 5/7/18 | Moved webservice values to xml, added Admin controller for security | 4  |   |
+| 5/9/18 | Debugged, fixed db, video, docs etc, final deplay and git push| 10  |   |

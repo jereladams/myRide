@@ -38,7 +38,7 @@
                             </c:if>
 
                         <div>
-                            <input type="text" name="vin" id="vin" class="form-control searchform" maxlength="17" minlength="17" required placeholder="VIN">
+                            <input type="text" name="vin" id="vin" class="form-control searchform" maxlength="17" minlength="17" required placeholder="VIN (Vehicle Identification Number)">
                         </div>
                         <br>
                         <button><span>Submit</span></button>

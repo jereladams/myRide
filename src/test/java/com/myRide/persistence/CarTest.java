@@ -1,7 +1,6 @@
 package com.myRide.persistence;
 
-import com.myRide.entity.Car;
-import com.myRide.entity.User;
+import com.myRide.entity.*;
 import com.myRide.testUtils.Database;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -113,8 +112,15 @@ public class CarTest {
         carDao.delete(carDao.getById(1));
         assertNull(carDao.getById(1));
 
-    //  TODO: add testing for deleting repairs & parts
+        //Delete repairs
+        GenericDao<Repair> repairDao = new GenericDao(Repair.class);
+        Repair repair = repairDao.getById(2);
+        assertNull(carDao.getById(2));
 
+        //Delete part
+        GenericDao<Part> partDao = new GenericDao(Part.class);
+        Role part = partDao.getById(2);
+        assertNull(partDao.getById(2));
     }
 
     /**

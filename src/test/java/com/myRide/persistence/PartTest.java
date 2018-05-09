@@ -1,6 +1,5 @@
 package com.myRide.persistence;
 
-import com.myRide.entity.Car;
 import com.myRide.entity.Part;
 import com.myRide.entity.Repair;
 import com.myRide.testUtils.Database;
@@ -8,7 +7,6 @@ import com.myRide.testUtils.Database;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;

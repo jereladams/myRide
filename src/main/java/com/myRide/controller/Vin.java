@@ -79,7 +79,7 @@ public class Vin extends HttpServlet {
 
                     //Get recalls from webservice
                     RecallResults recallResults = getRecallResults(year,make,model);
-                    List<RecallItem> recallList = recallResults.getResults();
+                   List<RecallItem> recallList = recallResults.getResults();
 
                     request.setAttribute("recalls", recallList);
 

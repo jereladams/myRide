@@ -12,13 +12,13 @@ I would like to create an Automobile Maintenance Archive website to serve as rep
 
 ### Screenshots
 
-* [Main](Images/MainScreen.jpg)
-* [Login](Images/LoginScreen.jpg)
-* [Register](Images/RegisterScreen.jpg)
-* [Cars](Images/CarsScreen.jpg)
-* [Add Repair](Images/AddRepairScreen.jpg)
-* [Repairs](Images/RepairsScreen.jpg)
-* [Recalls](Images/RecallsScreen.jpg)
+* [Main](images/MainScreen.jpg)
+* [Login](images/LoginScreen.jpg)
+* [Register](images/RegisterScreen.jpg)
+* [Cars](images/CarsScreen.jpg)
+* [Add Repair](images/AddRepairScreen.jpg)
+* [Repairs](images/RepairsScreen.jpg)
+* [Recalls](images/RecallsScreen.jpg)
 
 
 ### Project Technologies/Techniques
@@ -56,14 +56,13 @@ I would like to create an Automobile Maintenance Archive website to serve as rep
 
 ### Design
 
-* [Screen Design](DesignDocuments/WireFrames/Main.png)
 * [Application Flow](DesignDocuments/applicationFlow.md)
-* [Main Page](Images/Main.png)
-* [Sign Up](Images/SignUp.png)
-* [Login Page](Images/Login.png)
-* [Logged In User](Images/LoggedInUser.png)
-* [Search Results](Images/SearchResults.png)
-* [Add Repair](Images/AddRepair.png)
+* [Main Page](images/Main.png)
+* [Sign Up](images/SignUp.png)
+* [Login Page](images/Login.png)
+* [Logged In User](images/LoggedInUser.png)
+* [Search Results](images/SearchResults.png)
+* [Add Repair](images/AddRepair.png)
 
 ### [Project Plan](ProjectPlan.md)
 
@@ -72,3 +71,24 @@ I would like to create an Automobile Maintenance Archive website to serve as rep
 ### [Development TimeLog](TimeLog.md)
 
 * [TimeLog](TimeLog.md)
+
+### [Demo Video and TimeLine]()
+
+* [Demo Video Time Line](TimeLine.md)
+* [Demo Video](https://youtu.be/LbnBbs6DGus)
+
+authentication
+
+### [Code Coverage](Images/CodeCoverage.png)
+
+* [Code Coverage](Images/CodeCoverage.png)
+
+  Controller = none
+  Entity = 54%
+  Persistence = %100
+
+### Takeaways
+
+I would not have put all the CRUD methods into single servlets. This made routing a nightmare and made testing next to impossible. I started out creating separate servlets for each CRUD and thought I would have a ridiculous number of controllers. I finally realized separating these is probably a better technique and allows each CRUD method to have its own doGET and doPost methods.
+
+I would have used the Session to store my objects rather than using the Request with individual attributes. I had an ah-ha moment about 3 weeks ago when we talked about Global Variables in my world = Session in the web programming.
