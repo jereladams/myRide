@@ -64,22 +64,21 @@ I would like to create an Automobile Maintenance Archive website to serve as rep
 * [Search Results](images/SearchResults.png)
 * [Add Repair](images/AddRepair.png)
 
-### [Project Plan](ProjectPlan.md)
+### Project Plan
 
 * [Project Plan](ProjectPlan.md)
 
-### [Development TimeLog](TimeLog.md)
+### Development TimeLog
 
 * [TimeLog](TimeLog.md)
 
-### [Demo Video and TimeLine]()
+### Demo Video and TimeLine
 
 * [Demo Video Time Line](TimeLine.md)
 * [Demo Video](https://youtu.be/LbnBbs6DGus)
 
-authentication
 
-### [Code Coverage](Images/CodeCoverage.png)
+### Code Coverage
 
 * [Code Coverage](Images/CodeCoverage.png)
 
